@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Business Accounts</title>
+  <style>
+    /* General Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-image: url(https://tse1.mm.bing.net/th?id=OIP.7nE6e-VApJZHTc-ywAGvaQHaE9&pid=Api&P=0&h=180);
+background-size: cover;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+/* Form Container */
+form {
+  background: #9cbc3d;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
+  width: 400px;
+}
+
+/* Form Title */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0d0ab1;
+  font-size: 24px;
+}
+
+/* Labels and Inputs */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+/* Total Input (Read-only) */
+input[readonly] {
+  background-color: #f9f9f9;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  form {
+    width: 90%;
+    padding: 15px 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <h1></h1>
+  <form id="businessForm" method="POST" action="/saveData">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required><br><br>
+
+    <label for="personName">Person Name:</label>
+    <input type="text" id="personName" name="personName" required><br><br>
+
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" name="productName" required><br><br>
+
+    <label for="kgs">No. of Kgs:</label>
+    <input type="number" id="kgs" name="kgs" required>
+    <label for="pricePerKg">Amount per KG:</label>
+    <input type="number" id="pricePerKg" name="pricePerKg" required><br><br>
+
+    <label for="total">Total:</label>
+    <input type="number" id="total" name="total" readonly><br><br>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <script>
+    const kgsInput = document.getElementById('kgs');
+    const priceInput = document.getElementById('pricePerKg');
+    const totalInput = document.getElementById('total');
+
+    kgsInput.addEventListener('input', calculateTotal);
+    priceInput.addEventListener('input', calculateTotal);
+
+    function calculateTotal() {
+      const kgs = parseFloat(kgsInput.value) || 0;
+      const pricePerKg = parseFloat(priceInput.value) || 0;
+      totalInput.value = kgs * pricePerKg;
+    }
+  </script>
+</body>
+</html>
